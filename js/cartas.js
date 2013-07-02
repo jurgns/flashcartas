@@ -1,5 +1,8 @@
-var vocab = new spanishVocab();
+var vocab = spanishVocab;
 var vocabList = vocab.verbs;
+
+var sourceLanguage = 'english';
+var targetLanguage = 'spanish';
 
 function getRandomWord() {
     var index = getRandomInt(0, vocabList.length - 1);
@@ -12,22 +15,13 @@ function getRandomInt (min, max) {
 
 function AppViewModel() {
     var currWord = getRandomWord();
-    var isSpanish = true;
-    this.cardWord = ko.observable(currWord.spanish());
+    this.cardWord = ko.observable(currWord[targetLanguage]);
     this.toggleCardWord = function() {
-        if(isSpanish) {
-            this.cardWord(currWord.english());
-            isSpanish = false;
-        }
-        else {
-            this.cardWord(currWord.spanish());
-            isSpanish = true;
-        }
+        this.cardWord(currWord[sourceLanguage]);
     }
     this.nextWord = function() {
         currWord = getRandomWord();
-        isSpanish = true;
-        this.cardWord(currWord.spanish());
+        this.cardWord(currWord[targetLanguage]);
     }
 }
 
