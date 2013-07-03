@@ -38,7 +38,7 @@
         <div id="content">
 
             <div id="card-container">
-                <p class="card" data-bind="text: cardWord, click: toggleCardWord"></p>
+                <p class="card" data-bind="text: currentWord()[displayLanguage()], click: toggleDisplayLanguage"></p>
             </div>
 
             <p id="nextButton" data-bind="click: nextWord">Next Word</p>
